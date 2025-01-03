@@ -7,7 +7,9 @@
     <div class="col-md-12">
         <div class="card card-primary card-outline">
             <div class="card-header">
-                <h5 class="m-0">Featured</h5>
+                <a href="{{ route('admin.tambah_user')}}" class="btn btn-outline-primary">
+					<i class="fas fa-plus"></i> Tambah
+				</a>
             </div>
             <div class="card-body">
                 <table class="table table-bordered table-striped datatables">

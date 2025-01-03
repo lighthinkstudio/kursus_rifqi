@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -30,7 +31,11 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        // FORM TAMBAH DATA USER
+        $data = [
+            'title' => 'Tambah Data Pengguna'
+        ];
+        return view('admin.user.create', $data);
     }
 
     /**
@@ -38,7 +43,30 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
-        //
+        // Validasi
+        $validated = $request->validated();
+
+        // Upload file
+        $file_name = '';
+        if($request->hasFile('foto'))
+        {
+            // $upload_file = $request->file('foto');
+            $path_file = $request->file('foto')->store('assets/uploads/images', 'public');
+            $file_name = basename($path_file);
+        }
+
+        $data = [
+            'username'  => $request->username,
+            'nama'      => $request->nama,
+            'email'     => $request->email,
+            'password'  => Hash::make($request->password),
+            'role'      => $request->role,
+            'status'    => $request->status,
+            'foto'      => $file_name,
+        ];
+        User::create($data);
+        
+        return redirect()->route('admin.user')->with(['success' => 'Data berhasil di tambah']);
     }
 
     /**
