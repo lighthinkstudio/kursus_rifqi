@@ -60,4 +60,13 @@ class User extends Authenticatable
         
         return $query;
     }
+
+    public function detail($id)
+    {
+        $query = DB::table('users')
+                    ->select('users.*')
+                    ->where('id', $id)
+                    ->first();
+        return $query;
+    }
 }

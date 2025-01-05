@@ -31,7 +31,25 @@
                             </td>
                             <td>{{ $data->email }}</td>
                             <td>{{ $data->role }}</td>
-                            <td>X</td>
+                            <td width="20%" class="text-center">
+								<div class="btn-group">
+									<button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#modalPassword{{ $data->id }}" data-backdrop="static">
+										<i class="fas fa-key"></i>
+									</button>
+									<button type="button" class="btn btn-sm btn-outline-info" data-toggle="modal" data-target="#Detail{{ $data->id }}" data-backdrop="static">
+										<i class="fas fa-eye"></i>
+									</button>
+									<a href="{{ route('admin.edit_user', $data->id) }}" class="btn btn-sm btn-outline-warning">
+										<i class="fas fa-edit"></i>
+									</a>
+									<button type="button" class="btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#Hapus{{ $data->id }}">
+										<i class="fas fa-trash"></i>
+									</button>
+								</div>
+							</td>
+							@include('admin.user.password')
+							@include('admin.user.detail')
+							@include('admin.user.delete')
                         </tr>
                         @endforeach
                     </tbody>
