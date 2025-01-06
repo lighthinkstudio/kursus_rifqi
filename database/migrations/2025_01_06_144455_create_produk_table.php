@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('produk', function (Blueprint $table) {
             $table->id();
-            $table->string('nama')->nullable();
+            $table->string('nama', 200)->unique();
+            $table->string('slug')->unique();
             $table->string('kategori')->nullable();
             $table->text('deskripsi')->nullable();
             $table->unsignedBigInteger('harga')->nullable();
