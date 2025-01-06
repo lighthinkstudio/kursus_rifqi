@@ -54,6 +54,33 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <div class="content">
       <div class="container-fluid">
 
+        <!-- Alert Success -->
+        @if($success = Session::get('success'))
+        <div class="alert alert-success alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+          {{ $success }}
+        </div>
+        @endif
+        <!-- End Alert Success -->
+
+        <!-- Alert Success -->
+        @if($warning = Session::get('warning'))
+        <div class="alert alert-warning alert-dismissible text-white">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+          {{ $warning }}
+        </div>
+        @endif
+        <!-- End Alert Success -->
+
+        <!-- Alert Danger -->
+        @if($danger = Session::get('danger'))
+        <div class="alert alert-danger alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+          {{ $danger }}
+        </div>
+        @endif
+        <!-- End Alert Danger -->
+          
         @yield('content')
 
       </div><!-- /.container-fluid -->
